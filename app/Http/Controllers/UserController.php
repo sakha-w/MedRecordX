@@ -69,7 +69,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'password' => ['required', 'min:5']
+        ];
+
+        if($request->username !== $user->username) {
+            $rules['username'] = ['required', 'unique:users', 'max:255', 'alpha'];
+        }
+
+        $validatedData = $request->validate($rules);
+
+        User::where('id', $user->id)->update($validatedData);
+
+        return back()->with('success', 'Password berhasil di update');
     }
 
     /**
