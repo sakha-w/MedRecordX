@@ -1,0 +1,17 @@
+.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse {
+    .brand-link .brand-image {
+        /* float: left; */
+        /* line-height: .8;
+        margin-left: .8rem;
+        margin-right: .5rem;
+        margin-top: -3px;
+        max-height: 33px; */
+        width: 70px;
+        height: 70px;
+        margin-left: auto;
+    }
+}
+
+.navbar-light-baru{
+    background-color: white;
+}
