@@ -10,7 +10,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PolyController;
 use App\Http\Controllers\QueueController;
 
-use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +54,28 @@ Route::middleware(['auth'])->group(function () {
         // patient resource
         Route::resource('pasien', PatientController::class);
 
+        // queue resource
+        Route::resource('antrian', QueueController::class);
+
+        // queue delete all
+        Route::post('/antrian/destroy_all', [QueueController::class, 'destroyAll'])->name('antrian.destroyAll');
+
+        // medical record route
+        Route::get('antrian/{antrian}/periksa', [QueueController::class, 'check'])->name('antrian.check');
+        // show detail
+        Route::get('pasien/{pasien}/rekam-medis/{rekam_medis}', [MedicalRecordController::class, 'show'])->name('rekam_medis.show');
+
+        // edit
+        Route::get('pasien/{pasien}/rekam-medis/{rekam_medis}/edit', [MedicalRecordController::class, 'edit'])->name('rekam_medis.edit');
+
+        // update
+        Route::put('rekam-medis/{rekam_medis}', [MedicalRecordController::class, 'update'])->name('rekam_medis.update');
+
+        // delete
+        Route::delete('rekam_medis/{rekam_medis}', [MedicalRecordController::class, 'destroy'])->name('rekam_medis.destroy');
+
+        // store
+        Route::post('rekam-medis', [MedicalRecordController::class, 'store'])->name('rekam_medis.store');
     });
 
 });
