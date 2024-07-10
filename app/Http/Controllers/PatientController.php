@@ -42,7 +42,6 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'no_bpjs' => ['nullable', 'numeric', 'digits:13', 'unique:patients'],
             'nama' => ['required', 'max:100'],
             'jenis_kelamin' => ['required', 'alpha'],
             'tgl_lahir' => ['required', 'date'],
@@ -111,7 +110,6 @@ class PatientController extends Controller
     public function update(Request $request, Patient $pasien)
     {
         $validatedData = $request->validate([
-            'no_bpjs' => ['nullable', 'numeric', 'digits:13', 'unique:patients'],
             'nama' => ['required', 'max:100'],
             'jenis_kelamin' => ['required', 'alpha'],
             'tgl_lahir' => ['required', 'date'],

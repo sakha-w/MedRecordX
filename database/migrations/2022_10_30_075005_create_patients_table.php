@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->char('id_pasien', 5)->primary();
-            $table->string('no_bpjs', 13)->unique()->nullable();
             $table->string('nama', 100);
             $table->enum('jenis_kelamin', ['pria', 'wanita']);
             $table->date('tgl_lahir');

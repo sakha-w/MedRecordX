@@ -78,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('rekam-medis', [MedicalRecordController::class, 'store'])->name('rekam_medis.store');
     });
 
+    Route::post('rekam-medis/print/{rekam_medis}', [MedicalRecordController::class, 'print'])->name('print.medical_record');
+    Route::post('rekam-medis/print/all/{pasien}', [MedicalRecordController::class, 'printAll'])->name('print.medical_record_all');  
 });
 
 Route::middleware(['guest'])->group(function () {

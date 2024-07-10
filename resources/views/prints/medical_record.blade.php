@@ -35,11 +35,7 @@
                                 <td>:</td>
                                 <td>{{ $medRecord->patient->nama }}</td>
                             </tr>
-                            <tr>
-                                <td>No BPJS</td>
-                                <td>:</td>
-                                <td>{{ $medRecord->patient->no_bpjs ?? '-' }}</td>
-                            </tr>
+                         
                             <tr>
                                 <td>Poli</td>
                                 <td>:</td>

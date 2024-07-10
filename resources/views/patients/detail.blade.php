@@ -20,10 +20,6 @@
                     <hr>
                     <div class="row">
                         <div class="col-6 mb-2">
-                            <strong>No BPJS</strong>
-                            <p>{{ $patient->no_bpjs }}</p>
-                        </div>
-                        <div class="col-6 mb-2">
                             <strong>Jenis_kelamin</strong>
                             <p>{{ ucwords($patient->jenis_kelamin) }}</p>
                         </div>

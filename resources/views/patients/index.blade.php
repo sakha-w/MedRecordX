@@ -35,7 +35,6 @@
                                             <th style="width: 10px">#</th>
                                             <th style="width: 10px">ID</th>
                                             <th>Nama</th>
-                                            <th>No Bpjs</th>
                                             <th style="width: 100px">Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
                                             <th>Usia</th>
@@ -48,8 +47,6 @@
                                                 <td>{{ $loop->iteration }}.</td>
                                                 <td>{{ $patient->id_pasien }}</td>
                                                 <td>{{ $patient->nama }}</td>
-                                                <td class="text-center">{{ $patient->no_bpjs ? $patient->no_bpjs : '-' }}
-                                                </td>
                                                 <td style="width: 100px">
                                                     @if ($patient->jenis_kelamin === 'pria')
                                                         <p class="text-center">
