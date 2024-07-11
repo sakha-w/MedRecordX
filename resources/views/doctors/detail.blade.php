@@ -32,15 +32,15 @@
                 <div class="text-center">
                     <label for="file-input">
                         @if ($doctor->photo)
-                        <img class="profile-user-img img-fluid img-circle" style="cursor: pointer"
+                        <img class="profile-user-img img-fluid img-circle" alt="" style="cursor: pointer"
                             src="{{ asset($doctor->photo) }}" alt="User profile picture">
                         @else
                         @if ($doctor->jenis_kelamin == 'pria')
-                        <img class="profile-user-img img-fluid img-circle" style="cursor: pointer"
+                        <img class="profile-user-img img-fluid img-circle" alt="" style="cursor: pointer"
                             src="{{ asset('img/doctor-male-img.jpeg') }}" alt="User profile picture">
 
                         @else
-                        <img class="profile-user-img img-fluid img-circle" style="cursor: pointer"
+                        <img class="profile-user-img img-fluid img-circle" alt="" style="cursor: pointer"
                             src="{{ asset('img/doctor-female-img.jpeg') }}" alt="User profile picture">
                         @endif
 

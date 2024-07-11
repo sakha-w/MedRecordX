@@ -36,7 +36,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-            <img src="{{ asset('img/logoklinik.png') }}" class="brand-image" width="300">
+            <img src="{{ asset('img/logoklinik.png') }}" alt="" class="brand-image" width="300">
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Masukkan akun anda</p>

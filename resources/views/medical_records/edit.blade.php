@@ -117,7 +117,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="keluhan">Keluhan</label>
+                            <label for="keluhan">Keluhan <span style="color: red; font-size: smaller;">*</span></label>
                             <textarea name="keluhan" id="keluhan" class="form-control @error('keluhan') is-invalid @enderror" rows="3"
                                 placeholder="Keluhan pasien" @if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'dokter') readonly @endif>{{ old('keluhan', $medRecord->keluhan) }}</textarea>
                             @error('keluhan')
@@ -127,7 +127,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="diagnosis">Diagnosis</label>
+                            <label for="diagnosis">Diagnosis <span style="color: red; font-size: smaller;">*</span></label>
                             <textarea name="diagnosis" id="diagnosis" class="form-control @error('diagnosis') is-invalid @enderror" rows="3"
                                 placeholder="Diagnosis" @if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'dokter') readonly @endif>{{ old('diagnosis', $medRecord->diagnosis) }}</textarea>
                             @error('diagnosis')
@@ -138,7 +138,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="terapi">Terapi</label>
+                            <label for="terapi">Terapi <span style="color: red; font-size: smaller;">*</span></label>
                             <textarea name="terapi" id="terapi" class="form-control @error('terapi') is-invalid @enderror" rows="3"
                                 placeholder="Terapi" @if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'dokter') readonly @endif>{{ old('terapi', $medRecord->terapi) }}</textarea>
                             @error('terapi')
@@ -168,7 +168,7 @@
 
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h3 class="card-title text-bold">Resep Obat</h3>
+                    <h3 class="card-title text-bold">Resep Obat <span style="color: red; font-size: smaller;">*</span></h3>
                 </div>
                 <div class="form-group">
                     <!-- Input hidden resep_obat -->

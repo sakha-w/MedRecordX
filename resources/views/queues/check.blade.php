@@ -138,7 +138,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="keluhan">Keluhan</label>
+                                <label for="keluhan">Keluhan <span style="color: red; font-size: smaller;">*</span></label>
                                 <textarea name="keluhan" id="keluhan"
                                     class="form-control @error('keluhan') is-invalid @enderror" rows="3"
                                     placeholder="Keluhan pasien">{{ old('keluhan') }}</textarea>
@@ -149,7 +149,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="diagnosis">Diagnosis</label>
+                                <label for="diagnosis">Diagnosis <span style="color: red; font-size: smaller;">*</span></label>
                                 <textarea name="diagnosis" id="diagnosis"
                                     class="form-control @error('diagnosis') is-invalid @enderror" rows="3"
                                     placeholder="Diagnosis">{{ old('diagnosis') }}</textarea>
@@ -160,7 +160,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="terapi">Terapi</label>
+                                <label for="terapi">Terapi <span style="color: red; font-size: smaller;">*</span></label>
                                 <textarea name="terapi" id="terapi"
                                     class="form-control @error('terapi') is-invalid @enderror" rows="3"
                                     placeholder="Terapi">{{ old('terapi') }}</textarea>
@@ -190,7 +190,7 @@
 
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title text-bold">Resep Obat</h3>
+                            <h3 class="card-title text-bold">Resep Obat <span style="color: red; font-size: smaller;">*</span></h3>
                         </div>
                         <div class="form-group">
                             <input id="resep_obat" type="hidden" name="resep_obat" value="{{ old('resep_obat') }}">

@@ -35,11 +35,6 @@
                                 <td>{{ $patient->nama }}</td>
                             </tr>
                             <tr>
-                                <td>No BPJS</td>
-                                <td>:</td>
-                                <td>{{ $patient->no_bpjs ?? '-' }}</td>
-                            </tr>
-                            <tr>
                                 <td>Jenis Kelamin</td>
                                 <td>:</td>
                                 <td>{{ ucwords($patient->jenis_kelamin) }}</td>

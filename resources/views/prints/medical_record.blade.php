@@ -16,6 +16,28 @@
         td {
             padding: .4rem;
         }
+        .role {
+            text-align: right;
+            margin-bottom: 50px;
+        }
+        .name {
+            text-align: right;
+            white-space: nowrap;
+        }
+        .pemeriksa {
+            text-align: right;
+            margin-right: 50px;
+        }
+        @media print {
+            .print-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            .print-container .name {
+                margin-top: 50px;
+            }
+        }
     </style>
 
 </head>
@@ -135,17 +157,9 @@
         <div class="row justify-content-end mt-5">
             <div class="col-4">
                 <div class="role">
-                    <p class="role">Pemeriksa,</p>
+                    <p class="pemeriksa">Pemeriksa,</p>
                     <p class="name mt-5">
-                        @if (auth()->user()->role === 'admin')
-                            {{ ucwords(auth()->user()->username) }}
-                        @endif
-                        @if (auth()->user()->role === 'dokter')
-                            {{ ucwords(auth()->user()->doctor->nama) }}
-                        @endif
-                        @if (auth()->user()->role === 'perawat')
-                            {{ ucwords(auth()->user()->nurse->nama) }}
-                        @endif
+                    {{ ucwords($medRecord->doctor->nama) }}
                     </p>
                 </div>
             </div>

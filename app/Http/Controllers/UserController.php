@@ -79,7 +79,13 @@ class UserController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        User::where('id', $user->id)->update($validatedData);
+        // Enkripsi password jika ada perubahan
+        if ($request->filled('password')) {
+            $validatedData['password'] = bcrypt($request->password);
+        }
+
+        // Update data pengguna
+        $user->update($validatedData);
 
         return back()->with('success', 'Password berhasil di update');
     }

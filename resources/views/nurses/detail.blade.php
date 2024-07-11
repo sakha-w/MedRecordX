@@ -32,10 +32,10 @@
                 <div class="text-center">
                     <label for="file-input">
                         @if ($nurse->photo)
-                        <img class="profile-user-img img-fluid img-circle" style="cursor: pointer"
+                        <img class="profile-user-img img-fluid img-circle" alt="" style="cursor: pointer"
                             src="{{ asset($nurse->photo) }}" alt="User profile picture">
                         @else
-                        <img class="profile-user-img img-fluid img-circle" style="cursor: pointer"
+                        <img class="profile-user-img img-fluid img-circle" alt="" style="cursor: pointer"
                             src="{{ asset('img/nurse-img.png') }}" alt="User profile picture">
                         @endif
                     </label>

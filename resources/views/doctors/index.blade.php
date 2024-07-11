@@ -71,7 +71,7 @@
                                                             <a class="dropdown-item text-info"
                                                                 href="{{ route('dokter.show', $doctor->id_dokter) }}">
                                                                 <i class="fa-solid fa-circle-info"></i>
-                                                                Detail</a>
+                                                                Edit</a>
                                                             <div class="dropdown-divider"></div>
                                                             <form action="{{ route('dokter.destroy', $doctor->id_dokter) }}"
                                                                 method="POST">

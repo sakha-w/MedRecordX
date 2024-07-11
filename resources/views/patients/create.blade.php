@@ -12,16 +12,6 @@
             <form action="{{ route('pasien.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
-                    {{-- <div class="form-group">
-                        <label for="no_bpjs">No BPJS <small>(Optional)</small></label>
-                        <input type="number" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs"
-                            placeholder="No BPJS" name="no_bpjs" value="{{ old('no_bpjs') }}">
-                        @error('no_bpjs')
-                        <p class="invalid-feedback">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div> --}}
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"

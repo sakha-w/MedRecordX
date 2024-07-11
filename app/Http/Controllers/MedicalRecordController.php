@@ -64,18 +64,6 @@ class MedicalRecordController extends Controller
         // get id in latest medical record
         $latest_med_record = MedicalRecord::latest()->first();
 
-        // validate medical prescription
-        // $validatedMedPrescription = $request->validate([
-        //     'id_obat' => ['required', 'numeric'],
-        //     'jumlah' => ['required', 'numeric'],
-        //     'aturan_pakai' => ['required', 'max:255']
-        // ]);
-
-        // // fill all relationship id
-        // $validatedMedPrescription["id_dokter"] = $request->id_dokter;
-        // $validatedMedPrescription["id_rekmed"] = $latest_med_record->id_rekmed;
-
-        // MedicalPrescription::create($validatedMedPrescription);
 
         // update patient check status
         $queue = Queue::where('id_antrian', $request->id_antrian)->first();
@@ -85,7 +73,6 @@ class MedicalRecordController extends Controller
 
         $patient_id = $queue->patient->id_pasien;
 
-        // return Queue::where('id_antrian', $request->id_antrian)->get();
         return redirect()->route('antrian.index')
             ->with('success', 'Pasien dengan nama
                 <strong>' . $queue->patient->nama . "</strong>
@@ -119,8 +106,6 @@ class MedicalRecordController extends Controller
             'pageTitle' => 'Edit Rekam Medis',
             'medRecord' => $rekam_medis,
             'patient' => $pasien,
-            // 'medicines' => Medicine::all(),
-            // 'prescription' => MedicalPrescription::where('id_rekmed', $rekam_medis->id_rekmed)->get()
         ]);
     }
 
@@ -145,26 +130,11 @@ class MedicalRecordController extends Controller
             'harga' => ['nullable']
         ]);
 
-        // validate medical prescription
-        // $validatedMedPrescription = $request->validate([
-        //     'id_obat' => ['required', 'numeric'],
-        //     'jumlah' => ['required', 'numeric'],
-        //     'aturan_pakai' => ['required', 'max:255']
-        // ]);
-
-        // update query
-        // medical record
         $medRecordUpdate = MedicalRecord::where('id_rekmed', $rekam_medis->id_rekmed)->first();
         $medRecordUpdate->fill($validatedMedRecord);
         $changesMedRecord = $medRecordUpdate->getDirty();
         $medRecordUpdate->save();
 
-        // prescription
-        // $prescriptionUpdate = MedicalPrescription::where('id_resep', $rekam_medis->prescription->id_resep)->first();
-        // $prescriptionUpdate->fill($validatedMedPrescription);
-        // $changesPrescription = $prescriptionUpdate->getDirty();
-        // $prescriptionUpdate->save();
-        // || $changesPrescription !== []
 
         if ($changesMedRecord !== [] ) {
             return redirect()->route('rekam_medis.show', [$rekam_medis->id_pasien, $rekam_medis->id_rekmed])
