@@ -25,14 +25,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/dokter/{dokter}', [DoctorController::class, 'detail_dokter'])->name('doctors.detail_dokter');
+    Route::get('/perawat/{perawat}', [NurseController::class, 'detail_perawat'])->name('nurses.detail_perawat');
+
 
     Route::prefix('users')->group(function () {
         // doctor resource
         Route::resource('dokter', DoctorController::class);
+
 
         // nurse resource
         Route::resource('perawat', NurseController::class);
@@ -80,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('rekam-medis/print/{rekam_medis}', [MedicalRecordController::class, 'print'])->name('print.medical_record');
     Route::post('rekam-medis/print/all/{pasien}', [MedicalRecordController::class, 'printAll'])->name('print.medical_record_all');
-  
+      
 });
 
 Route::middleware(['guest'])->group(function () {

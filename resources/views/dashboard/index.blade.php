@@ -162,7 +162,7 @@
                                         <td>{{ $queue->patient->nama }}</td>
                                         <td>{{ $queue->poly->nama_poli }}</td>
                                         <td>{{ $queue->created_at->format('d M Y') }}</td>
-                                        <td>{{ $queue->created_at->setTimezone('Asia/Jakarta')->format('H:i') }}</td>
+                                        <td>{{ $queue->created_at->format('H:i') }}</td>
                                         {{-- <td>{!! $queue->status
                                             ? '<span class="badge badge-success">Sudah Diperiksa</span>'
                                             : '<span class="badge badge-secondary">Belum Diperiksa</span>' !!}

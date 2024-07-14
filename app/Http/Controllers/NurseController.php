@@ -84,6 +84,15 @@ class NurseController extends Controller
 
     }
 
+    public function detail_perawat(Nurse $perawat)
+    {
+        return view('nurses.detail_perawat', [
+            'pageTitle' => $perawat->nama,
+            'nurse' => $perawat,
+            // 'polies' => Poly::all()
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

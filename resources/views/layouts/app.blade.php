@@ -87,6 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/js/dataTables.buttons.min.js"></script>
     <script src="/js/buttons.bootstrap4.min.js"></script>
     <script src="/js/jszip.min.js"></script>
+    <script src="/js/pdfmake.min.js"></script>
     <script src="/js/vfs_fonts.js"></script>
     <script src="/js/buttons.html5.min.js"></script>
     <script src="/js/buttons.print.min.js"></script>

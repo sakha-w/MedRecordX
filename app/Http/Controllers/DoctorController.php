@@ -101,6 +101,16 @@ class DoctorController extends Controller
         ]);
     }
 
+    public function detail_dokter(Doctor $dokter)
+    {
+        return view('doctors.detail_dokter', [
+            'pageTitle' => $dokter->nama,
+            'doctor' => $dokter,
+            'polies' => Poly::all()
+        ]);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

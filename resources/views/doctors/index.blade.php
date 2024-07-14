@@ -68,10 +68,14 @@
                                                             <span class="sr-only">Toggle Dropdown</span>
                                                         </button>
                                                         <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item text-info"
+                                                            <a class="dropdown-item text-warning"
                                                                 href="{{ route('dokter.show', $doctor->id_dokter) }}">
-                                                                <i class="fa-solid fa-circle-info"></i>
+                                                                <i class="fa-solid fa-pen-to-square"></i>
                                                                 Edit</a>
+                                                            <a class="dropdown-item text-info"
+                                                                href="{{ route('doctors.detail_dokter', $doctor->id_dokter) }}">
+                                                                <i class="fa-solid fa-circle-info"></i>
+                                                                Detail</a>
                                                             <div class="dropdown-divider"></div>
                                                             <form action="{{ route('dokter.destroy', $doctor->id_dokter) }}"
                                                                 method="POST">

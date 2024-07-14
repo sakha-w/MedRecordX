@@ -71,7 +71,7 @@
                                     <tr>
                                         <td>Tanggal / Jam</td>
                                         <td>:</td>
-                                        <td>{{ now()->setTimezone('Asia/Jakarta')->format('d M y / H:i') }}</td>
+                                        <td>{{ now()->format('d M y / H:i') }}</td>
                                     </tr>
                                     <tr>
                                         <td>Poli</td>
@@ -170,19 +170,19 @@
                                 </p>
                                 @enderror
                             </div>
+
+                            @if(auth()->user()->role !== 'dokter')
                             <div class="form-group">
                                 <label for="harga">Harga</label>
                                 <input type="number" class="form-control @error('harga') is-invalid @enderror"
-                                    name="harga" id="harga" placeholder="Rp.0" value="{{ old('harga', 0) }}"
-                                    @if(auth()->user()->role === 'dokter') disabled @endif>
+                                    name="harga" id="harga" placeholder="Rp.0" value="{{ old('harga', 0) }}">
                                 @error('harga')
                                 <p class="invalid-feedback">
                                     {{ $message }}
                                 </p>
                                 @enderror
                             </div>
-
-
+                            @endif
                         </div>
                     </div>
 
@@ -194,7 +194,7 @@
                         </div>
                         <div class="form-group">
                             <input id="resep_obat" type="hidden" name="resep_obat" value="{{ old('resep_obat') }}">
-                            <trix-editor input="resep_obat"></trix-editor>
+                            <trix-editor input="resep_obat" mode="plaintext"></trix-editor>
                             @error('resep_obat')
                             <p class="invalid-feedback">
                                 {{ $message }}
@@ -236,6 +236,5 @@
     $(document).ready(function () {
         $('#medicine-select').select2();
     });
-
 </script>
 @endsection
