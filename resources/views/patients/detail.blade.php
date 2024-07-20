@@ -104,13 +104,13 @@
                                                 Cetak Semua
                                             </button>
                                         </form>
-                                        @can('doctor')
+                                        <!-- @can('doctor')
                                             <a href="{{ route('antrian.check', $patient->queue->id_antrian) }}"
                                                 class="btn btn-sm btn-primary">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Tambah
                                             </a>
-                                        @endcan
+                                        @endcan -->
                                     </div>
                                 @endif
                             </div>

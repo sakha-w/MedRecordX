@@ -42,14 +42,14 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama' => ['required', 'max:100'],
+            'nama'          => ['required', 'max:100'],
             'jenis_kelamin' => ['required', 'alpha'],
-            'tgl_lahir' => ['required', 'date'],
-            'tempat_lahir' => ['required', 'max:50'],
-            'no_hp' => ['required', 'numeric', 'max_digits:15'],
-            'alamat' => ['required'],
-            'berat_badan' => ['nullable', 'numeric', 'max_digits:3'],
-            'tinggi_badan' => ['nullable', 'numeric', 'max_digits:3']
+            'tgl_lahir'     => ['required', 'date'],
+            'tempat_lahir'  => ['required', 'max:50'],
+            'no_hp'         => ['required', 'numeric', 'max_digits:15'],
+            'alamat'        => ['required'],
+            'berat_badan'   => ['nullable', 'numeric', 'max_digits:3'],
+            'tinggi_badan'  => ['nullable', 'numeric', 'max_digits:3']
         ]);
 
         // create patients id

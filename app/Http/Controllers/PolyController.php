@@ -28,8 +28,8 @@ class PolyController extends Controller
 
         return view('polies.index', [
             'pageTitle' => 'Data Poli',
-            'polies' => $polies,
-            'doctors' => collect($doctors)->map(function ($doctor) {
+            'polies'    => $polies,
+            'doctors'   => collect($doctors)->map(function ($doctor) {
                 return $doctor->count();
             }),
             'queues' => collect($queues)->map(function ($queue) {

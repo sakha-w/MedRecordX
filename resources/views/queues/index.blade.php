@@ -74,11 +74,12 @@
                                 href="#unchecked-patient" role="tab" aria-controls="unchecked-patient"
                                 aria-selected="true">Belum Diperiksa</a>
                         </li>
-                        {{-- <li class="nav-item">
+                         <li class="nav-item">
                             <a class="nav-link" id="checked-patient-tab" data-toggle="pill" href="#checked-patient"
                                 role="tab" aria-controls="checked-patient" aria-selected="false">Sudah Diperiksa</a>
-                        </li> --}}
+                        </li> 
                     </ul>
+                    
 
                     <div class="tab-content" id="tabContent">
                         {{-- unchecked patient --}}
@@ -226,7 +227,7 @@
                                                     <th>Poli Tujuan</th>
                                                     <th>Tanggal Masuk</th>
                                                     <th>Jam Masuk</th>
-                                                    <th>Status</th>
+                                                    {{--<th>Status</th>--}}
                                                     <th style="width: 200px">Aksi</th>
                                                 </tr>
                                             </thead>
@@ -239,9 +240,9 @@
                                                             <td>{{ $queue->poly->nama_poli }}</td>
                                                             <td>{{ $queue->created_at->format('d M Y') }}</td>
                                                             <td>{{ $queue->created_at->format('H:i') }}</td>
-                                                            <td>{!! $queue->status
+                                                            <!-- <td>{!! $queue->status
                                                                 ? '<span class="badge bg-success">Sudah Diperiksa</span>'
-                                                                : '<span class="badge bg-secondary">Belum Diperiksa</span>' !!}</td>
+                                                                : '<span class="badge bg-secondary">Belum Diperiksa</span>' !!}</td> -->
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button"

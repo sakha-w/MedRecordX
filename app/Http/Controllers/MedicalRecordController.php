@@ -167,7 +167,7 @@ class MedicalRecordController extends Controller
     public function printAll(Patient $pasien)
     {
         return view('prints.medical_record_all', [
-            'patient' => $pasien,
+            'patient'    => $pasien,
             'medRecords' => $pasien->medicalRecord
         ]);
     }

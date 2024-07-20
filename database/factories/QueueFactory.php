@@ -18,8 +18,8 @@ class QueueFactory extends Factory
     {
         return [
             'id_pasien' => 'PA117',
-            'id_poli' => 'POL45',
-            'status' => true
+            'id_poli'   => 'POL45',
+            'status'    => true
         ];
     }
 }

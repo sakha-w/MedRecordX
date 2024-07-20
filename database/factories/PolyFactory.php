@@ -17,7 +17,7 @@ class PolyFactory extends Factory
     public function definition()
     {
         return [
-            'id_poli' => 'POL' . fake()->unique()->randomNumber(2, true),
+            'id_poli'   => 'POL' . fake()->unique()->randomNumber(2, true),
             'nama_poli' => fake()->sentence(2)
         ];
     }

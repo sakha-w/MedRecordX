@@ -32,4 +32,14 @@ class MedicalRecord extends Model
          return $this->belongsTo(Doctor::class, 'id_dokter');
     }
 
+    public function getCreatedAtAtAttribute($value)
+    {
+        return $this->patient ? $this->patient->created_at : $value;
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return $this->patient ? $this->patient->updated_at : $value;
+    }
+
 }

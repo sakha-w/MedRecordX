@@ -26,9 +26,9 @@ class QueueController extends Controller
 
         return view('queues.index', [
             'pageTitle' => 'Data Antrian',
-            'queues' => $queues,
-            'patients' => Patient::latest()->pluck('nama', 'id_pasien'),
-            'polies' => Poly::latest()->pluck('nama_poli', 'id_poli'),
+            'queues'    => $queues,
+            'patients'  => Patient::latest()->pluck('nama', 'id_pasien'),
+            'polies'    => Poly::latest()->pluck('nama_poli', 'id_poli'),
         ]);
     }
 
@@ -51,9 +51,20 @@ class QueueController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id_pasien' => ['required', 'unique:queues', 'size:5'],
-            'id_poli' => ['required', 'size:5'],
+            'id_pasien' => ['required', 'size:5'],
+            'id_poli'   => ['required', 'size:5'],
         ]);
+
+        $existingQueue = Queue::where('id_pasien', $validatedData['id_pasien'])
+            ->where('status', 0)
+            ->first();
+
+        if ($existingQueue) {
+            return redirect()->back()
+                ->withErrors(['error' => 'Pasien ini sudah ada di antrian dan belum diperiksa.'])
+                ->withInput();
+        }
+
         $validatedData['status'] = 0;
 
         Queue::create($validatedData);
@@ -77,8 +88,8 @@ class QueueController extends Controller
     {
         return view('queues.check', [
             'pageTitle' => 'Periksa | ' . $antrian->patient->nama,
-            'queue' => $antrian,
-            'doctors' => Doctor::where('id_poli', $antrian->id_poli)
+            'queue'     => $antrian,
+            'doctors'   => Doctor::where('id_poli', $antrian->id_poli)
                 ->pluck('nama', 'id_dokter'),
         ]);
     }

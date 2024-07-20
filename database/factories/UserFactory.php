@@ -22,7 +22,7 @@ class UserFactory extends Factory
         return [
             'username' => fake()->userName(),
             'password' => bcrypt('password'),
-            'role' => $role[mt_rand(0, count($role) - 1)]
+            'role'     => $role[mt_rand(0, count($role) - 1)]
         ];
     }
 

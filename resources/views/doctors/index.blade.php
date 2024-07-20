@@ -21,6 +21,17 @@
                                         </button>
                                     </div>
                                 @endif
+
+                                @if (session()->has('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <i class="fa-solid fa-exclamation-circle mr-1"></i>
+                                        {!! session('error') !!}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+
                                 <a href="{{ route('dokter.create') }}" class="btn btn-info btn-sm mb-2">
                                     <i class="fa-solid fa-plus"></i>
                                     Tambah Data

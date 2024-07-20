@@ -17,7 +17,7 @@ class NurseController extends Controller
     {
         return view('nurses.index', [
             'pageTitle' => 'Data Perawat',
-            'nurses' => Nurse::latest()->get()
+            'nurses'    => Nurse::latest()->get()
         ]);
     }
 
@@ -30,7 +30,7 @@ class NurseController extends Controller
     {
         return view('nurses.create', [
             'pageTitle' => 'Tambah Perawat',
-            'nurses' => Nurse::latest()->limit(5)->pluck('nama', 'id_perawat')
+            'nurses'    => Nurse::latest()->limit(5)->pluck('nama', 'id_perawat')
         ]);
     }
 
@@ -44,15 +44,15 @@ class NurseController extends Controller
     {
         // data validation
         $validatedData = $request->validate([
-            'nama' => ['required', 'max:100'],
-            'email' => ['nullable', 'email:dns', 'unique:nurses', 'max:50'],
+            'nama'          => ['required', 'max:100'],
+            'email'         => ['nullable', 'email:dns', 'unique:nurses', 'max:50'],
             'jenis_kelamin' => ['required'],
-            'no_hp' => ['required', 'numeric', 'unique:nurses', 'max_digits:15'],
-            'tgl_lahir' => ['nullable', 'date'],
-            'tempat_lahir' => ['nullable', 'max:50'],
-            'alamat' => ['nullable', 'max:255'],
-            'username' => ['required', 'unique:users', 'max:255'],
-            'password' => ['required', 'min:5']
+            'no_hp'         => ['required', 'numeric', 'unique:nurses', 'max_digits:15'],
+            'tgl_lahir'     => ['nullable', 'date'],
+            'tempat_lahir'  => ['nullable', 'max:50'],
+            'alamat'        => ['nullable', 'max:255'],
+            'username'      => ['required', 'unique:users', 'max:255'],
+            'password'      => ['required', 'min:5']
         ]);
 
         // create nurse id
@@ -72,7 +72,7 @@ class NurseController extends Controller
         User::create([
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'role' => 'perawat'
+            'role'     => 'perawat'
         ]);
         $user_id = User::where('username', $request->username)->pluck('id');
         $validatedData['id'] = $user_id[0];
@@ -88,7 +88,7 @@ class NurseController extends Controller
     {
         return view('nurses.detail_perawat', [
             'pageTitle' => $perawat->nama,
-            'nurse' => $perawat,
+            'nurse'     => $perawat,
             // 'polies' => Poly::all()
         ]);
     }
@@ -103,7 +103,7 @@ class NurseController extends Controller
     {
         return view('nurses.detail', [
             'pageTitle' => $perawat->nama,
-            'nurse' => $perawat
+            'nurse'     => $perawat
         ]);
     }
 
@@ -143,11 +143,11 @@ class NurseController extends Controller
 
         // data validation
         $rules = [
-            'nama' => ['required', 'max:100'],
+            'nama'          => ['required', 'max:100'],
             'jenis_kelamin' => ['required'],
-            'tgl_lahir' => ['nullable', 'date'],
-            'tempat_lahir' => ['nullable', 'max:50'],
-            'alamat' => ['nullable', 'max:255'],
+            'tgl_lahir'     => ['nullable', 'date'],
+            'tempat_lahir'  => ['nullable', 'max:50'],
+            'alamat'        => ['nullable', 'max:255'],
         ];
 
         // rules if request number, email is equal nurse

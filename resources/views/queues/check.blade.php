@@ -71,7 +71,7 @@
                                     <tr>
                                         <td>Tanggal / Jam</td>
                                         <td>:</td>
-                                        <td>{{ now()->format('d M y / H:i') }}</td>
+                                        <td>{{ $queue->created_at->format('d M y / H:i') }}</td>
                                     </tr>
                                     <tr>
                                         <td>Poli</td>

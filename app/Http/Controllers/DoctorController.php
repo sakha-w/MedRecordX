@@ -181,9 +181,18 @@ class DoctorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Doctor $dokter)
-    {
-        Doctor::where('id_dokter', $dokter->id_dokter)->delete();
-        User::where('id', $dokter->user->id)->delete();
-        return redirect()->route('dokter.index')->with('success', "Data <strong>$dokter->nama</strong> berhasil dihapus");
+{
+    // Check if the doctor has any associated medical records
+    $hasMedicalRecords = $dokter->medicalRecord()->exists();
+
+    if ($hasMedicalRecords) {
+        return redirect()->route('dokter.index')->with('error', "Data <strong>$dokter->nama</strong> tidak bisa dihapus karena masih ada rekam medis yang terkait.");
     }
+
+    // Proceed with deletion
+    Doctor::where('id_dokter', $dokter->id_dokter)->delete();
+    User::where('id', $dokter->user->id)->delete();
+
+    return redirect()->route('dokter.index')->with('success', "Data <strong>$dokter->nama</strong> berhasil dihapus");
+}
 }
