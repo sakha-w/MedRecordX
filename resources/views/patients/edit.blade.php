@@ -14,9 +14,17 @@
                 @method('PUT')
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="nik">NIK</label>
+                        <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" placeholder="NIK" name="nik" value="{{ old('nik', $patient->nik) }}">
+                        @error('nik')
+                        <p class="invalid-feedback">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
-                            placeholder="Nama" name="nama" value="{{ old('nama', $patient->nama) }}">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Nama" name="nama" value="{{ old('nama', $patient->nama) }}">
                         @error('nama')
                         <p class="invalid-feedback">
                             {{ $message }}
@@ -25,8 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin"
-                            name="jenis_kelamin">
+                        <select class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin">
                             <option value="">Pilih jenis kelamin</option>
                             <option value="pria" {{ old('jenis_kelamin', $patient->jenis_kelamin) == 'pria' ? 'selected' : '' }}>Pria</option>
                             <option value="wanita" {{ old('jenis_kelamin', $patient->jenis_kelamin) == 'wanita' ? 'selected' : '' }}>Wanita
@@ -40,8 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tgl_lahir">Tanggal Lahir</label>
-                        <input type="date" class="form-control @error('tgl_lahir') is-invalid @enderror" id="tgl_lahir"
-                            name="tgl_lahir" value="{{ old('tgl_lahir', $patient->tgl_lahir) }}">
+                        <input type="date" class="form-control @error('tgl_lahir') is-invalid @enderror" id="tgl_lahir" name="tgl_lahir" value="{{ old('tgl_lahir', $patient->tgl_lahir) }}">
                         @error('tgl_lahir')
                         <p class="invalid-feedback">
                             {{ $message }}
@@ -50,9 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tempat_lahir">Tempat Lahir</label>
-                        <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror"
-                            id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir"
-                            value="{{ old('tempat_lahir', $patient->tempat_lahir) }}">
+                        <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir" value="{{ old('tempat_lahir', $patient->tempat_lahir) }}">
                         @error('tempat_lahir')
                         <p class="invalid-feedback">
                             {{ $message }}
@@ -61,8 +65,7 @@
                     </div>
                     <div class="form-group">
                         <label for="no_hp">No Hp</label>
-                        <input type="number" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp"
-                            placeholder="No Hp" name="no_hp" value="{{ old('no_hp', $patient->no_hp) }}">
+                        <input type="number" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" placeholder="No Hp" name="no_hp" value="{{ old('no_hp', $patient->no_hp) }}">
                         @error('no_hp')
                         <p class="invalid-feedback">
                             {{ $message }}
@@ -71,8 +74,7 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror"
-                            rows="3" placeholder="Alamat" name="alamat">{{ old('alamat', $patient->alamat) }}</textarea>
+                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="3" placeholder="Alamat" name="alamat">{{ old('alamat', $patient->alamat) }}</textarea>
                         @error('alamat')
                         <p class="invalid-feedback">
                             {{ $message }}
@@ -83,8 +85,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="berat_badan">Berat Badan (kg)</label>
-                                <input type="number" class="form-control @error('berat_badan') is-invalid @enderror"
-                                    id="berat_badan" placeholder="Berat Badan" name="berat_badan" value="{{ old('berat_badan', $patient->berat_badan) }}">
+                                <input type="number" class="form-control @error('berat_badan') is-invalid @enderror" id="berat_badan" placeholder="Berat Badan" name="berat_badan" value="{{ old('berat_badan', $patient->berat_badan) }}">
                                 @error('berat_badan')
                                 <p class="invalid-feedback">
                                     {{ $message }}
@@ -95,8 +96,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="tinggi_badan">Tinggi Badan (cm)</label>
-                                <input type="number" class="form-control @error('tinggi_badan') is-invalid @enderror"
-                                    id="tinggi_badan" placeholder="Tinggi Badan" name="tinggi_badan" value="{{ old('tinggi_badan', $patient->tinggi_badan) }}">
+                                <input type="number" class="form-control @error('tinggi_badan') is-invalid @enderror" id="tinggi_badan" placeholder="Tinggi Badan" name="tinggi_badan" value="{{ old('tinggi_badan', $patient->tinggi_badan) }}">
                                 @error('tinggi_badan')
                                 <p class="invalid-feedback">
                                     {{ $message }}

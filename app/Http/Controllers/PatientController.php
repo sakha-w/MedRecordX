@@ -29,7 +29,7 @@ class PatientController extends Controller
     {
         return view('patients.create', [
             'pageTitle' => 'Tambah Pasien',
-            'patients' => Patient::latest()->limit(5)->pluck('nama', 'id_pasien')
+            'patients' => Patient::latest()->limit(5)->pluck('nama', 'id_pasien', 'nik')
         ]);
     }
 
@@ -42,6 +42,7 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'nik'           => ['required', 'numeric', 'digits:16', 'unique:patients,nik'],
             'nama'          => ['required', 'max:100'],
             'jenis_kelamin' => ['required', 'alpha'],
             'tgl_lahir'     => ['required', 'date'],
@@ -110,6 +111,7 @@ class PatientController extends Controller
     public function update(Request $request, Patient $pasien)
     {
         $validatedData = $request->validate([
+            'nik'           => ['required', 'numeric', 'digits:16'],
             'nama' => ['required', 'max:100'],
             'jenis_kelamin' => ['required', 'alpha'],
             'tgl_lahir' => ['required', 'date'],

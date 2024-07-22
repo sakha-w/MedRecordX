@@ -1,36 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- @can('onlyPharmacist')
-        @if ($prescriptionCount > 0)
-            <div class="alert alert-info">
-                <i class="fa-solid fa-bell mr-1"></i>
-                Anda memiliki {{ $prescriptionCount }} resep yang perlu disiapkan
-            </div>
-        @endif
-    @endcan --}}
-    @can('onlyDoctor')
+    <!-- @can('onlyDoctor')
         @if ($queueCount > 0)
             <div class="alert alert-info">
                 <i class="fa-solid fa-bell mr-1"></i>
                 Anda memiliki {{ $queueCount }} pasien untuk diperiksa
             </div>
         @endif
-    @endcan
+    @endcan -->
     <div class="row">
         <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>{{ $patientCount }}</h3>
+                    <h3>{{ $queueCount }}</h3>
 
-                    <p>Pasien Terdaftar</p>
+                    <p>Pasien</p>
                 </div>
                 <div class="icon">
                     <i class="fa-solid fa-hospital-user"></i>
                 </div>
-                <a href="{{ route('pasien.index') }}" class="small-box-footer">Lihat <i
+                <a href="{{ route('antrian.index') }}" class="small-box-footer">Lihat <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -86,19 +78,6 @@
             </div>
             <!-- /.col -->
         @endcan
-
-        {{-- <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fa-solid fa-arrow-right"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Antrian</span>
-                    <span class="info-box-number">{{ $queueCount }}</span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div> --}}
         <!-- /.col -->
 
         <!-- /.col -->
@@ -108,7 +87,7 @@
         <div class="col-md-8">
             <div class="card card-primary card-outline">
                 <div class="card-header border-transparent">
-                    <h3 class="card-title">Pendaftaran Hari Ini</h3>
+                    <h3 class="card-title">Pendaftaran Pemeriksaan</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0" style="display: block;">
@@ -117,11 +96,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>NIK</th>
                                     <th>Nama Pasien</th>
                                     <th>Poli Tujuan</th>
                                     <th>Tanggal Masuk</th>
                                     <th>Jam Masuk</th>
-                                    {{-- <th>Status</th> --}}
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -130,18 +110,35 @@
                                         <td colspan="6" class="text-center">Belum ada pemeriksaan rekam medis hari ini</td>
                                     </tr>
                                 @endif
+                                @php
+                                    $index = 0; // Inisialisasi indeks di luar loop
+                                @endphp
                                 @foreach ($queues as $queue)
+                                @php
+                                        $allowedPoli = null;
+                                        $role = auth()->user()->role;
+                                        if ($role === 'dokter') {
+                                            $allowedPoli = auth()->user()->doctor->id_poli;
+                                        }
+                                    @endphp
+                                    @if ($role === 'admin' || $role === 'perawat' || ($role === 'dokter' && $queue->id_poli === $allowedPoli))
                                     <tr>
-                                        <td>{{ $loop->iteration }}.</td>
-                                        <td>{{ $queue->patient->nama }}</td>
-                                        <td>{{ $queue->poly->nama_poli }}</td>
-                                        <td>{{ $queue->created_at->format('d M Y') }}</td>
-                                        <td>{{ $queue->created_at->format('H:i') }}</td>
-                                         {{-- <td>{!! $queue->status
-                                            ? '<span class="badge badge-success">Sudah Diperiksa</span>'
-                                            : '<span class="badge badge-secondary">Belum Diperiksa</span>' !!}
-                                        </td> --}}
-                                    </tr>
+                                            <td> <strong>{{ $index + 1 }}.</strong></td>
+
+                                            <td>{{ $queue->patient->nik }}</td>
+                                            <td>{{ $queue->patient->nama }}</td>
+                                            <td>{{ $queue->poly->nama_poli }}</td>
+                                            <td>{{ $queue->created_at->format('d M Y') }}</td>
+                                            <td>{{ $queue->created_at->format('H:i') }}</td>
+                                            <td>{!! $queue->status
+                                                ? '<span class="badge badge-success">Sudah Diperiksa</span>'
+                                                : '<span class="badge badge-secondary">Belum Diperiksa</span>' !!}
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $index++; // Tambahkan indeks hanya jika kondisi if terpenuhi
+                                        @endphp
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

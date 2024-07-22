@@ -34,8 +34,9 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th style="width: 10px">ID</th>
+                                            <th style="width: 10px">NIK</th>
                                             <th>Nama</th>
-                                            <th style="width: 100px">Jenis Kelamin</th>
+                                            <th style="width: 10px">Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
                                             <th>Usia</th>
                                             <th>Aksi</th>
@@ -46,6 +47,7 @@
                                             <tr class="odd">
                                                 <td>{{ $loop->iteration }}.</td>
                                                 <td>{{ $patient->id_pasien }}</td>
+                                                <td>{{ $patient->nik }}</td>
                                                 <td>{{ $patient->nama }}</td>
                                                 <td style="width: 100px">
                                                     @if ($patient->jenis_kelamin === 'pria')

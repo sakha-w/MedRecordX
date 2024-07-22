@@ -15,8 +15,12 @@ class DashboardController extends Controller
     {
         $queueCount = Queue::where('status', 0)->get()->count();
 
+        $queueCount1 = Queue::where('status', 1)->get()->count();
+
         if (auth()->user()->role === 'dokter') {
-            $queueCount = Queue::where('id_poli', auth()->user()->doctor->id_poli)->count();
+            $queueCount = Queue::where('id_poli', auth()->user()->doctor->id_poli)
+                               ->where('status', 0)
+                               ->count();
         }
 
         return view('dashboard.index', [
@@ -25,6 +29,7 @@ class DashboardController extends Controller
             'doctorCount'  => Doctor::all()->count(),
             'nurseCount'   => Nurse::all()->count(),
             'queueCount'   => $queueCount,
+            'queueCount1'  => $queueCount1,
             // 'polyCount'    => Poly::all()->count(),
             'queues'       => Queue::all()->filter(function ($todayQueue) {
                 if (str_contains($todayQueue, now()->toDateString())) {

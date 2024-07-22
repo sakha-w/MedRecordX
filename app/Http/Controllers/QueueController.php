@@ -27,7 +27,7 @@ class QueueController extends Controller
         return view('queues.index', [
             'pageTitle' => 'Data Antrian',
             'queues'    => $queues,
-            'patients'  => Patient::latest()->pluck('nama', 'id_pasien'),
+            'patients'  => Patient::latest()->pluck('nama', 'nik'),
             'polies'    => Poly::latest()->pluck('nama_poli', 'id_poli'),
         ]);
     }
@@ -51,24 +51,33 @@ class QueueController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id_pasien' => ['required', 'size:5'],
-            'id_poli'   => ['required', 'size:5'],
+            'id_poli'   => ['required', 'exists:polies,id_poli'],
+            'nik'       => ['required', 'numeric', 'digits:16', 'exists:patients,nik'],
         ]);
-
-        $existingQueue = Queue::where('id_pasien', $validatedData['id_pasien'])
+    
+        $patient = Patient::where('nik', $validatedData['nik'])->first();
+        if (!$patient) {
+            return redirect()->back()->withErrors(['nik' => 'Pasien tidak ditemukan.'])->withInput();
+        }
+    
+        $existingQueue = Queue::where('id_pasien', $patient->id_pasien)
             ->where('status', 0)
             ->first();
-
+    
         if ($existingQueue) {
             return redirect()->back()
                 ->withErrors(['error' => 'Pasien ini sudah ada di antrian dan belum diperiksa.'])
                 ->withInput();
         }
 
-        $validatedData['status'] = 0;
-
-        Queue::create($validatedData);
-
+        $queueData = [
+            'id_poli'   => $validatedData['id_poli'],
+            'id_pasien' => $patient->id_pasien,
+            'status'    => 0,
+        ];
+        
+        Queue::create($queueData);
+    
         return redirect()->back()
             ->with('success', 'Data berhasil ditambahkan ke antrian');
     }

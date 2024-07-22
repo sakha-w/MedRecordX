@@ -19,6 +19,10 @@
                     </div>
                     <hr>
                     <div class="row">
+                    <div class="col-6 mb-2">
+                            <strong>NIK</strong>
+                            <p>{{ $patient->nik }}</p>
+                        </div>
                         <div class="col-6 mb-2">
                             <strong>Jenis_kelamin</strong>
                             <p>{{ ucwords($patient->jenis_kelamin) }}</p>

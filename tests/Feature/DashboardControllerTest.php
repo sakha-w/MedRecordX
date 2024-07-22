@@ -38,6 +38,6 @@ class DashboardControllerTest extends TestCase
         $response->assertViewHas('doctorCount', Doctor::count());
         $response->assertViewHas('nurseCount', Nurse::count());
         $response->assertViewHas('queueCount', Queue::where('status', 0)->count());
-        $response->assertViewHas('polyCount', Poly::count());
+        // $response->assertViewHas('polyCount', Poly::count());
     }
 }

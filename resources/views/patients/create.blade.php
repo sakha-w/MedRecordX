@@ -12,6 +12,16 @@
             <form action="{{ route('pasien.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
+                <div class="form-group">
+                        <label for="nik">NIK</label>
+                        <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik"
+                            placeholder="NIK" name="nik" value="{{ old('nik') }}">
+                        @error('nik')
+                        <p class="invalid-feedback">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
@@ -83,7 +93,7 @@
                             <div class="form-group">
                                 <label for="berat_badan">Berat Badan (kg)</label>
                                 <input type="number" class="form-control @error('berat_badan') is-invalid @enderror"
-                                    id="berat_badan" placeholder="Berat Badan" name="berat_badan">
+                                    id="berat_badan" placeholder="Berat Badan" name="berat_badan" value="{{ old('berat_badan') }}">
                                 @error('berat_badan')
                                 <p class="invalid-feedback">
                                     {{ $message }}
@@ -95,7 +105,7 @@
                             <div class="form-group">
                                 <label for="tinggi_badan">Tinggi Badan (cm)</label>
                                 <input type="number" class="form-control @error('tinggi_badan') is-invalid @enderror"
-                                    id="tinggi_badan" placeholder="Tinggi Badan" name="tinggi_badan">
+                                    id="tinggi_badan" placeholder="Tinggi Badan" name="tinggi_badan" value="{{ old('tinggi_badan') }}">
                                 @error('tinggi_badan')
                                 <p class="invalid-feedback">
                                     {{ $message }}

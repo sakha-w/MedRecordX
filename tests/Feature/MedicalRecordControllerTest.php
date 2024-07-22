@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Models\Patient;
 use App\Models\MedicalRecord;
+use App\Models\Doctor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -13,7 +14,7 @@ class MedicalRecordControllerTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Test if the index route returns the correct view and data.
+     * Test if the index route returns t~he correct view and data.
      *
      * @return void
      */
@@ -24,8 +25,12 @@ class MedicalRecordControllerTest extends TestCase
         $this->actingAs($user);
 
         // Arrange: Create some medical records
+        $doctor = Doctor::factory()->create();
         $patient = Patient::factory()->create();
-        $medicalRecords = MedicalRecord::factory()->count(3)->create(['id_pasien' => $patient->id_pasien]);
+        $medicalRecords = MedicalRecord::factory()->count(3)->create([
+            'id_pasien' => $patient->id_pasien,
+            'id_dokter' => $doctor->id_dokter,
+        ]);
 
         // Act: Make a GET request to the index route
         $response = $this->get(route('rekam_medis.index'));
